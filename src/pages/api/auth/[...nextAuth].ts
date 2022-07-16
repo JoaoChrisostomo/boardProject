@@ -1,6 +1,8 @@
 import NextAuth from "next-auth";
 import Providers from "next-auth/providers";
 
+import firebase from '../../../services/firebaseConnection'
+
 
 export default NextAuth({
   // Configure one or more authentication providers
@@ -15,14 +17,29 @@ export default NextAuth({
   callbacks:{
     async session(session, profile){
       try{
+        const lastDonate = await firebase.firestore().collection('users')
+        .doc(String(profile.sub))
+        .get()
+        .then((snapshot) =>{
+          if(snapshot.exists){
+            return snapshot.data().lastDonate.toDate()
+          }else{
+            return null // Esse user não é apoiador
+          }
+        })
+
         return{
           ...session,
-          id: profile.sub
+          id: profile.sub,
+          vip: lastDonate ? true : false,
+          lastDonate: lastDonate
         }
       }catch{
         return{
           ...session,
-          id: null
+          id: null,
+          vip: false,
+          lastDonate: null
         }
       }
     },
