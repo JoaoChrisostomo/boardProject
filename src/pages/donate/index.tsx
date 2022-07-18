@@ -7,9 +7,9 @@ import { getSession } from 'next-auth/client'
 import firebase from '../../services/firebaseConnection'
 
 import { PayPalButtons } from '@paypal/react-paypal-js'
+import Image from 'next/image'
+import rocketImg from '../../../public/images/rocket.svg'
 
-// CLIENT_ID = ARIepvryEG6eEJFztjL-9K6jjScMb5MHglrC6TW0kwD3IRx5FGRv8RUTHfqMJsgosZalSFUzrBRWcfr5
-// <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID"></script>
 interface DonateProps{
   user:{
     nome: string,
@@ -40,11 +40,11 @@ export default function Donate({ user }: DonateProps){
         <title>Ajuda a plataforma board a ficar onlien</title>
       </Head>
       <main className={styles.container}>
-        <img src="images/rocket.svg" alt="Foto do perfil do usuario" />
+        <Image src={rocketImg} alt="Foto do perfil do usuario" />
 
-       {vip && (
+       {true && (
         <div className={styles.vip}>
-          <img src={user.image} alt="" />
+          <Image width={50} height={50} src={user.image} alt="Foto do perfil do usuario" />
           <span>Parabéns você é um apoiador!</span>
         </div>
        )}

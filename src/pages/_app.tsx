@@ -6,7 +6,7 @@ import '../styles/global.scss'
 import { Provider as NextAuthProvider } from 'next-auth/client'
 
 const initialOptions ={
-  "client-id": "ARIepvryEG6eEJFztjL-9K6jjScMb5MHglrC6TW0kwD3IRx5FGRv8RUTHfqMJsgosZalSFUzrBRWcfr5",
+  "client-id": "AX4I--5Wk8ADk5TUit-CGRDHui_M0j6Yzo9cWqS9fMiyfq22m3Jj71abxjAhcYfC2hVkcfJsjIzzoF8_",
   currency: "BRL",
   intent: "capture",
 }
